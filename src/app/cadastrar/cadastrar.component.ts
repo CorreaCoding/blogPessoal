@@ -1,7 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 
@@ -36,7 +34,7 @@ export class CadastrarComponent implements OnInit {
     if (this.usuario.senha != this.confirmarSenha) {
       alert('As senhas não são compatíveis')
     } else {
-      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario)=>{
+      this.authService.cadastrar(this.usuario).subscribe((resp:Usuario)=>{
         this.usuario = resp
         this.router.navigate(['/entrar'])
         alert('Usuário cadastrado com sucesso!')
