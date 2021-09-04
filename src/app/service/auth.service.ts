@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { UsuarioLogin } from '../model/UsuarioLogin';
 import { Observable } from 'rxjs';
-import { Usuario } from '../model/Usuario';
 import { environment } from 'src/environments/environment.prod';
+import { Usuario } from '../model/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,10 @@ export class AuthService {
 
   cadastrar(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>("https://correacoding.herokuapp.com/usuario/cadastrar", usuario)
+  }
+
+  getUsuarioById(id: number): Observable<Usuario>{
+return this.http.get<Usuario>(`https://correacoding.herokuapp.com/usuario/${id}`)
   }
 
   logado() {
