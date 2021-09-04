@@ -1,7 +1,20 @@
 #img-bg{
-    background-image: url("../../assets/img/coding-learning-institute.jpg");
+    background-image: url("https://i.imgur.com/BRtgUu2.png");
     min-height: 695px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+h1{
+    color: black
+}
+
+body{
+    background-color: #f8f8f8;
+}
+
+.caixa {
+    background-color: #7CB3DE;
+    border-radius: 40px;
+  }

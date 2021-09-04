@@ -1,7 +1,31 @@
 #img-bg{
-    background-image: url("../../assets/img/coding-learning-institute.jpg");
+    background-image: url("https://i.imgur.com/6itNtJ4.png");
     min-height: 100vh; /*695px;*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+h1{
+    color: black
+}
+
+body{
+    background-color: #f8f8f8;
+}
+
+.caixa {
+    background-color: #7CB3DE;
+    border-radius: 40px;
+  }
+
+  .cancelar{
+     color: white;
+     background-color:#136eb3;
+  }
+
+  .cancelar:hover{
+    background-color:transparent;
+    color: white;
+    background-color: rgb(15, 65, 139);
+  }

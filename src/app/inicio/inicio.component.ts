@@ -37,12 +37,12 @@ export class InicioComponent implements OnInit {
       this.router.navigate(['/entrar']);
     }
 
-    this.findAllTemas()
+    this.getAllTemas()
     this.getAllPostagens()
 
   }
 
-  findAllTemas(){
+  getAllTemas(){
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp;
     })
@@ -62,7 +62,7 @@ export class InicioComponent implements OnInit {
 
   getAllPostagens(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[])=>{
-this.listaPostagens = resp
+    this.listaPostagens = resp
     })
   }
 
@@ -77,7 +77,7 @@ this.listaPostagens = resp
       this.postagem = resp
       alert('Postagem realizada com sucesso!')
       this.postagem = new Postagem() //Limpa os campos para realizar uma nova Postagem
-      this.getAllPostagens
+      this.getAllPostagens()
     })
 
   }
