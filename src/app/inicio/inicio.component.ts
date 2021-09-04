@@ -48,8 +48,8 @@ export class InicioComponent implements OnInit {
     })
   }
 
-  findTemaById(id: number){
-   this.temaService.getByIdTema(id).subscribe((resp: Tema)=>{
+  findTemaById(){
+   this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema)=>{
      this.tema = resp
    })
   }
@@ -62,7 +62,7 @@ export class InicioComponent implements OnInit {
 
   getAllPostagens(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[])=>{
-this.listaPostagens
+this.listaPostagens = resp
     })
   }
 
@@ -77,6 +77,7 @@ this.listaPostagens
       this.postagem = resp
       alert('Postagem realizada com sucesso!')
       this.postagem = new Postagem() //Limpa os campos para realizar uma nova Postagem
+      this.getAllPostagens
     })
 
   }
