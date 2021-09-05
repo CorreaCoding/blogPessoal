@@ -14,6 +14,7 @@ import { TemaService } from '../service/tema.service';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
+
   postagem: Postagem = new Postagem();
   listaPostagens: Postagem[];
 
@@ -37,15 +38,16 @@ export class InicioComponent implements OnInit {
       this.router.navigate(['/entrar']);
     }
 
-    this.getAllTemas()
+    this.findAllTemas()
     this.getAllPostagens()
 
   }
 
-  getAllTemas(){
-    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
-      this.listaTemas = resp;
+  findAllTemas(){
+    this.temaService.getAllTemas().subscribe((resp: Tema[])=>{
+      this.listaTemas = resp
     })
+    
   }
 
   findTemaById(){

@@ -15,13 +15,14 @@ export class TemaService {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
-  getAllTema(): Observable<Tema[]> {
+  getAllTemas(): Observable<Tema[]> {
     return this.http.get<Tema[]>('https://correacoding.herokuapp.com/tema', this.token)
   }
 
   getByIdTema(id: number): Observable<Tema>{
     return this.http.get<Tema>(`https://correacoding.herokuapp.com/tema/${id}`, this.token)
   }
+  // Template literals (crase) seria o ato de passar uma rota com string e variável ao mesmo tempo
 
   postTema(tema: Tema): Observable<Tema>{
     return this.http.post<Tema>('https://correacoding.herokuapp.com/tema', tema, this.token)

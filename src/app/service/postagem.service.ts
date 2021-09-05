@@ -11,6 +11,8 @@ export class PostagemService {
 
   constructor(private http: HttpClient) { }
 
+
+  // Para criar postagem precisa ter um token de autenticação
   token = {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
@@ -28,7 +30,11 @@ export class PostagemService {
   }
 
   getByIdPostagem(id: number): Observable<Postagem>{
-    return this.http.get<Postagem>('https://correacoding.herokuapp.com/postagens/${id}', this.token)
+    return this.http.get<Postagem>(`https://correacoding.herokuapp.com/postagens/${id}`, this.token)
+  }
+
+  deletePostagem(id: number){
+    return this.http.delete<Postagem>(`https://correacoding.herokuapp.com/postagens/${id}`, this.token)
   }
 
 }

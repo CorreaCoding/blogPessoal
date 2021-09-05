@@ -10,16 +10,21 @@ import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-postagem-edit',
   templateUrl: './postagem-edit.component.html',
-  styleUrls: ['./postagem-edit.component.css']
+  styleUrls: ['./postagem-edit.component.css'],
 })
 export class PostagemEditComponent implements OnInit {
+  postagem: Postagem = new Postagem();
 
-  postagem: Postagem = new Postagem()
-  tema: Tema = new Tema()
-  listaTemas: Tema[]
-  idTema: number
+  tema: Tema = new Tema();
+  listaTemas: Tema[];
+  idTema: number;
 
-  constructor(private postagemService: PostagemService, private temaService: TemaService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private postagemService: PostagemService,
+    private temaService: TemaService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     if (environment.token == '') {
@@ -27,28 +32,38 @@ export class PostagemEditComponent implements OnInit {
       this.router.navigate(['/entrar']);
     }
 
-    let id = this.route.snapshot.params['id']
-    this.findPostagemById(id)
-    this.findAllTemas()
-}
+    let id = this.route.snapshot.params['id'];
+    this.findPostagemById(id);
+    this.findAllTemas();
+  }
 
-findAllTemas(){
-  this.temaService.getAllTema().subscribe((resp: Tema[]) => {
-    this.listaTemas = resp;
-  })
-}
+  findAllTemas() {
+    this.temaService.getAllTemas().subscribe((resp: Tema[]) => {
+      this.listaTemas = resp;
+    });
+  }
 
-findTemaById(){
-  this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema)=>{
-    this.tema = resp
-  })
- }
+  findTemaById() {
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
+      this.tema = resp;
+    });
+  }
 
- findPostagemById(id: number){
-this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem)=>{
-  this.postagem = resp
-})
- }
+  findPostagemById(id: number) {
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
+      this.postagem = resp;
+    });
+  }
 
+  atualizar(){
+    this.tema.id =  this.idTema
+    this.postagem.tema = this.tema
+
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=>{
+      this.postagem = resp
+      alert('Postagem atualizada com sucesso!')
+      this.router.navigate(['/inicio'])
+    })
+  }
 
 }
