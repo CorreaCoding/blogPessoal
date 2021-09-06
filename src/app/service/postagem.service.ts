@@ -33,6 +33,10 @@ export class PostagemService {
     return this.http.get<Postagem>(`https://correacoding.herokuapp.com/postagens/${id}`, this.token)
   }
 
+  getByTituloPostagm(titulo: string): Observable<Postagem[]>{
+    return this.http.get<Postagem[]>(`https://correacoding.herokuapp.com/postagens/titulo/${titulo}`, this.token)
+  }
+
   deletePostagem(id: number){
     return this.http.delete<Postagem>(`https://correacoding.herokuapp.com/postagens/${id}`, this.token)
   }

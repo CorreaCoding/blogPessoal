@@ -38,6 +38,14 @@
 
     <!-- COMEÇO DE TOAS AS POSTAGENS -->
     <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
+      <div class="row d-flex justify-content-center mt-5 mb-5">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="titulo" placeholder="Digite o título da postagem"
+              [(ngModel)]='tituloPostagem' (keyup)='findByTituloPostagem()'>
+          </div>
+        </div>
+      </div>
       <div class="card-columns">
         <div class="card text-center" *ngFor='let postagem of listaPostagens | orderBy : key : reverse'>
           <div class="card-body">
@@ -73,6 +81,14 @@
 
     <!-- COMEÇO DAS POSTAGENS POR TEMA -->
     <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="postagensTema-tab">
+      <div class="row d-flex justify-content-center mt-5 mb-5">
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" id="descricaoTema" placeholder="Digite o tema"
+              [(ngModel)]='descricaoTema' (keyup)='getByDescricaoTema()'>
+          </div>
+        </div>
+      </div>
       <div class="card-columns" *ngFor='let tema of listaTemas'>
         <div class="card text-center" *ngFor='let postagem of tema.postagem | orderBy : key : reverse'>
           <div class="card-body">
