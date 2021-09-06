@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostagemDeleteComponent } from 'src/app/delete/postagem-delete/postagem-delete.component';
 import { Postagem } from 'src/app/model/Postagem';
 import { Tema } from 'src/app/model/Tema';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
@@ -23,12 +24,12 @@ export class PostagemEditComponent implements OnInit {
     private postagemService: PostagemService,
     private temaService: TemaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertas: AlertasService
   ) {}
 
   ngOnInit() {
-
-    window.scroll(0,0)
+    window.scroll(0, 0);
 
     if (environment.token == '') {
       // alert("Sua sessão expirou, faça o login novamente.")
@@ -58,15 +59,16 @@ export class PostagemEditComponent implements OnInit {
     });
   }
 
-  atualizar(){
-    this.tema.id =  this.idTema
-    this.postagem.tema = this.tema
+  atualizar() {
+    this.tema.id = this.idTema;
+    this.postagem.tema = this.tema;
 
-    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=>{
-      this.postagem = resp
-      alert('Postagem atualizada com sucesso!')
-      this.router.navigate(['/inicio'])
-    })
+    this.postagemService
+      .putPostagem(this.postagem)
+      .subscribe((resp: Postagem) => {
+        this.postagem = resp;
+        this.alertas.showAlertSuccess('Postagem atualizada com sucesso!');
+        this.router.navigate(['/inicio']);
+      });
   }
-
 }
