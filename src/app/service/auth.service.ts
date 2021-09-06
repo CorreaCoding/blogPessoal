@@ -24,6 +24,10 @@ export class AuthService {
     return this.http.post<Usuario>("https://correacoding.herokuapp.com/usuario/cadastrar", usuario)
   }
 
+  atualizar(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>("https://correacoding.herokuapp.com/usuario/alterar", usuario)
+  }
+
   getUsuarioById(id: number): Observable<Usuario>{
   return this.http.get<Usuario>(`https://correacoding.herokuapp.com/usuario/${id}`, this.token)
   }
